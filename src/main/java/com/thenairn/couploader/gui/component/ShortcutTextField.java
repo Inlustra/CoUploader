@@ -26,19 +26,23 @@ public class ShortcutTextField extends JTextField {
 
             @Override
             public void keyTyped(KeyEvent ke) {
-                ShortcutTextField.this.setText(KeyStroke.getKeyStrokeForEvent(ke).toString());
+                ShortcutTextField.this.setText(format(KeyStroke.getKeyStrokeForEvent(ke).toString()));
             }
 
             @Override
             public void keyPressed(KeyEvent ke) {
-                ShortcutTextField.this.setText(KeyStroke.getKeyStrokeForEvent(ke).toString());
+                ShortcutTextField.this.setText(format(KeyStroke.getKeyStrokeForEvent(ke).toString()));
             }
 
             @Override
             public void keyReleased(KeyEvent ke) {
                 if (KeyEvent.VK_PRINTSCREEN == ke.getKeyCode()) {
-                    ShortcutTextField.this.setText(KeyStroke.getKeyStrokeForEvent(ke).toString());
+                    ShortcutTextField.this.setText(format(KeyStroke.getKeyStrokeForEvent(ke).toString()));
                 }
+            }
+            
+            private String format(String string) {
+                return string.replaceAll("typed", "").replaceAll("release", "");
             }
         });
     }

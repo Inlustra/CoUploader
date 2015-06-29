@@ -6,12 +6,9 @@
 package com.thenairn.couploader;
 
 import com.thenairn.couploader.gui.OptionsFrame;
-import com.tulskiy.keymaster.common.HotKey;
-import com.tulskiy.keymaster.common.HotKeyListener;
-import com.tulskiy.keymaster.common.Provider;
+import com.thenairn.couploader.user.ShortcutRegister;
 import java.util.Properties;
 import javax.swing.JFrame;
-import javax.swing.KeyStroke;
 
 /**
  *
@@ -24,14 +21,9 @@ public class Main {
     public static void main(String[] args) {
         Properties props = System.getProperties();
         props.setProperty("jna.nosys", "true");
-        Provider provider = Provider.getCurrentProvider(true);
-        provider.register(KeyStroke.getKeyStroke("control shift PLUS"), new HotKeyListener() {
-
-            @Override
-            public void onHotKey(HotKey hotkey) {
-                
-            }
-        });
+        
+        ShortcutRegister.getInstance();
+        
         JFrame jFrame = new OptionsFrame();
         jFrame.pack();
         jFrame.setVisible(true);

@@ -6,6 +6,9 @@
 
 package com.thenairn.couploader.gui;
 
+import com.thenairn.couploader.user.Settings;
+import com.thenairn.couploader.user.ShortcutRegister;
+
 /**
  *
  * @author thomas
@@ -36,9 +39,9 @@ public class OptionsFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        savebutton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        shortcutTextField1 = new com.thenairn.couploader.gui.component.ShortcutTextField();
+        uploadClipboardField = new com.thenairn.couploader.gui.component.ShortcutTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,7 +98,12 @@ public class OptionsFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3)))
         );
 
-        jButton2.setText("Save");
+        savebutton.setText("Save");
+        savebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savebuttonActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancel");
 
@@ -107,7 +115,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(savebutton)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -115,10 +123,12 @@ public class OptionsFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(117, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(savebutton)
                     .addComponent(jButton3))
                 .addContainerGap())
         );
+
+        uploadClipboardField.setText(Settings.getUploadClipboardKey());
 
         jLabel4.setText("Upload Copied Text");
 
@@ -135,7 +145,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shortcutTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(uploadClipboardField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,7 +155,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(shortcutTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uploadClipboardField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,6 +164,11 @@ public class OptionsFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void savebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebuttonActionPerformed
+        Settings.setUploadClipboardKey(uploadClipboardField.getText());
+        ShortcutRegister.getInstance().reinitialize();
+    }//GEN-LAST:event_savebuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +207,6 @@ public class OptionsFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -202,6 +216,7 @@ public class OptionsFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private com.thenairn.couploader.gui.component.ShortcutTextField shortcutTextField1;
+    private javax.swing.JButton savebutton;
+    private com.thenairn.couploader.gui.component.ShortcutTextField uploadClipboardField;
     // End of variables declaration//GEN-END:variables
 }
