@@ -11,6 +11,7 @@ import com.tulskiy.keymaster.common.Provider;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,7 @@ public class ShortcutRegister {
     private final Provider provider;
 
     private void init() {
-        provider.register(KeyStroke.getKeyStroke(Settings.getUploadClipboardKey()), new HotKeyListener() {
+        provider.register(KeyStroke.getKeyStroke(KeyEvent.VK_PRINTSCREEN, KeyEvent.ALT_MASK | KeyEvent.CTRL_MASK), new HotKeyListener() {
 
             @Override
             public void onHotKey(HotKey hotkey) {

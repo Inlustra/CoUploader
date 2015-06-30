@@ -5,10 +5,9 @@
  */
 package com.thenairn.couploader;
 
-import com.thenairn.couploader.gui.OptionsFrame;
-import com.thenairn.couploader.user.ShortcutRegister;
+import com.thenairn.couploader.gui.CoverFrame;
+import java.awt.AWTException;
 import java.util.Properties;
-import javax.swing.JFrame;
 
 /**
  *
@@ -18,14 +17,14 @@ public class Main {
 
     private final static Object obj = new Object();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AWTException {
         Properties props = System.getProperties();
         props.setProperty("jna.nosys", "true");
-        
-        ShortcutRegister.getInstance();
-        
-        JFrame jFrame = new OptionsFrame();
-        jFrame.pack();
-        jFrame.setVisible(true);
+
+        //ShortcutRegister.getInstance();
+        new CoverFrame().init(false);
+        //JFrame jFrame = new OptionsFrame();
+        //jFrame.pack();
+        //jFrame.setVisible(true);
     }
 }
